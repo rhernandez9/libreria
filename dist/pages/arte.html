@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <link href="../css/style.css" rel="stylesheet"/>
+        <!-- our project just needs Font Awesome Solid + Brands -->
+        <link href="../../assests/css/fontawesome.css" rel="stylesheet" />
+        <link href="../../assests/css/brands.css" rel="stylesheet" />
+        <link href="../../assests/css/solid.css" rel="stylesheet" />
+        <title>
+            LIBRERIA LA NUEVA
+        </title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../../index.html"><i class="fa-solid fa-book-bookmark"></i> La Nueva</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                      <a class="nav-link" href="#">Quienes Somos</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Categorías
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="escolar.html">Escolar</a></li>
+                          <li><a class="dropdown-item" href="arte.html">Arte</a></li>
+                          <li><a class="dropdown-item" href="oficina.html">Oficina</a></li>
+                      </ul>
+                      </li>
+                  </ul>
+                  <form class="d-flex">
+                      <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fa-solid fa-cart-shopping" onclick="imprimirCarrito();"></i>
+                        <span id="carritoIcon" class="badge bg-secondary"></span>
+                      </a>
+                  </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" id="catalogo">
+            <br></br>
+            <div class="row row-cols-3 row-cols-lg-3 g-2 g-lg-3" id="main"></div>
+        </div>
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Carrito de Compra</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="carritoList">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="facturaPDF()">Realizar Pago</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script src="../js/funciones.js"></script>
+          <script src="../js/jspdf.debug.js"></script>
+          <script src="../js/jspdf.plugin.autotable.js"></script>
+          <script src="../js/factura.js"></script>
+          <script>
+            const articulos = JSON.parse(localStorage.getItem('cartArt')) || [];
+            imprimirCatalogo(articulos);
+            imprimirCarrito();
+        </script>          
+    </body>
+</html>
